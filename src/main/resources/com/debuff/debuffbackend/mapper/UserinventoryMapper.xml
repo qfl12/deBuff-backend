@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.debuff.debuffbackend.mapper.UserinventoryMapper">
+
+    <resultMap id="BaseResultMap" type="com.debuff.debuffbackend.entity.Userinventory">
+            <id property="inventoryId" column="inventory_id" />
+            <result property="userId" column="user_id" />
+            <result property="itemId" column="item_id" />
+            <result property="quantity" column="quantity" />
+            <result property="acquisitionTime" column="acquisition_time" />
+            <result property="status" column="status" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        inventory_id,user_id,item_id,quantity,acquisition_time,status
+    </sql>
+</mapper>

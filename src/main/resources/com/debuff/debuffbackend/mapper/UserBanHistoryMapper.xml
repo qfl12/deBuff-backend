@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.debuff.debuffbackend.mapper.UserBanHistoryMapper">
+
+    <resultMap id="BaseResultMap" type="com.debuff.debuffbackend.entity.UserBanHistory">
+            <id property="historyId" column="history_id" />
+            <result property="userId" column="user_id" />
+            <result property="banStart" column="ban_start" />
+            <result property="banEnd" column="ban_end" />
+            <result property="unbanTime" column="unban_time" />
+            <result property="unbanType" column="unban_type" />
+            <result property="adminUnbanReason" column="admin_unban_reason" />
+            <result property="reason" column="reason" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        history_id,user_id,ban_start,ban_end,unban_time,unban_type,
+        admin_unban_reason,reason
+    </sql>
+</mapper>

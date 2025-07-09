@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.debuff.debuffbackend.mapper.TradeconfirmationsMapper">
+
+    <resultMap id="BaseResultMap" type="com.debuff.debuffbackend.entity.Tradeconfirmations">
+            <id property="confirmationId" column="confirmation_id" />
+            <result property="orderId" column="order_id" />
+            <result property="buyerId" column="buyer_id" />
+            <result property="sellerId" column="seller_id" />
+            <result property="paymentConfirmed" column="payment_confirmed" />
+            <result property="shippingConfirmed" column="shipping_confirmed" />
+            <result property="tradeCompleted" column="trade_completed" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        confirmation_id,order_id,buyer_id,seller_id,payment_confirmed,shipping_confirmed,
+        trade_completed
+    </sql>
+</mapper>

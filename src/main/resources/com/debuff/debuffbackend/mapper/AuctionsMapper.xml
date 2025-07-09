@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.debuff.debuffbackend.mapper.AuctionsMapper">
+
+    <resultMap id="BaseResultMap" type="com.debuff.debuffbackend.entity.Auctions">
+            <id property="auctionId" column="auction_id" />
+            <result property="itemId" column="item_id" />
+            <result property="sellerId" column="seller_id" />
+            <result property="startPrice" column="start_price" />
+            <result property="currentBid" column="current_bid" />
+            <result property="endTime" column="end_time" />
+            <result property="status" column="status" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        auction_id,item_id,seller_id,start_price,current_bid,end_time,
+        status
+    </sql>
+</mapper>
