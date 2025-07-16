@@ -7,12 +7,14 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import java.math.BigDecimal;
 import java.util.Date;
 import lombok.Data;
+import org.apache.ibatis.type.JdbcType;
+import jakarta.persistence.Column;
 
 /**
  * 用户信息表
  * @TableName users
  */
-@TableName(value ="users")
+@TableName("users")
 @Data
 public class Users {
     /**
@@ -34,12 +36,12 @@ public class Users {
     /**
      * 密码哈希值
      */
-    private String passwordHash;
+    private String password;
 
     /**
      * 昵称
      */
-    private String nickname;
+    private String username;
 
     /**
      * 头像URL
@@ -89,7 +91,9 @@ public class Users {
     /**
      * 角色：用户或管理员，默认用户
      */
-    private Object role;
+    @TableField(value = "role", jdbcType = JdbcType.VARCHAR)
+    @Column(length = 20)
+    private String role;
 
     /**
      * 状态：激活、禁用、待定，默认待定
@@ -126,8 +130,8 @@ public class Users {
         return (this.getUserId() == null ? other.getUserId() == null : this.getUserId().equals(other.getUserId()))
             && (this.getEmail() == null ? other.getEmail() == null : this.getEmail().equals(other.getEmail()))
             && (this.getPhone() == null ? other.getPhone() == null : this.getPhone().equals(other.getPhone()))
-            && (this.getPasswordHash() == null ? other.getPasswordHash() == null : this.getPasswordHash().equals(other.getPasswordHash()))
-            && (this.getNickname() == null ? other.getNickname() == null : this.getNickname().equals(other.getNickname()))
+            && (this.getPassword() == null ? other.getPassword() == null : this.getPassword().equals(other.getPassword()))
+            && (this.getUsername() == null ? other.getUsername() == null : this.getUsername().equals(other.getUsername()))
             && (this.getAvatarUrl() == null ? other.getAvatarUrl() == null : this.getAvatarUrl().equals(other.getAvatarUrl()))
             && (this.getGender() == null ? other.getGender() == null : this.getGender().equals(other.getGender()))
             && (this.getBirthDate() == null ? other.getBirthDate() == null : this.getBirthDate().equals(other.getBirthDate()))
@@ -151,8 +155,8 @@ public class Users {
         result = prime * result + ((getUserId() == null) ? 0 : getUserId().hashCode());
         result = prime * result + ((getEmail() == null) ? 0 : getEmail().hashCode());
         result = prime * result + ((getPhone() == null) ? 0 : getPhone().hashCode());
-        result = prime * result + ((getPasswordHash() == null) ? 0 : getPasswordHash().hashCode());
-        result = prime * result + ((getNickname() == null) ? 0 : getNickname().hashCode());
+        result = prime * result + ((getPassword() == null) ? 0 : getPassword().hashCode());
+        result = prime * result + ((getUsername() == null) ? 0 : getUsername().hashCode());
         result = prime * result + ((getAvatarUrl() == null) ? 0 : getAvatarUrl().hashCode());
         result = prime * result + ((getGender() == null) ? 0 : getGender().hashCode());
         result = prime * result + ((getBirthDate() == null) ? 0 : getBirthDate().hashCode());
@@ -179,8 +183,8 @@ public class Users {
         sb.append(", userId=").append(userId);
         sb.append(", email=").append(email);
         sb.append(", phone=").append(phone);
-        sb.append(", passwordHash=").append(passwordHash);
-        sb.append(", nickname=").append(nickname);
+        sb.append(", psaaword=").append(password);
+        sb.append(", username=").append(username);
         sb.append(", avatarUrl=").append(avatarUrl);
         sb.append(", gender=").append(gender);
         sb.append(", birthDate=").append(birthDate);

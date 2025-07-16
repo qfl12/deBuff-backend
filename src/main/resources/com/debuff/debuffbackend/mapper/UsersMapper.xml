@@ -8,8 +8,8 @@
             <id property="userId" column="user_id" />
             <result property="email" column="email" />
             <result property="phone" column="phone" />
-            <result property="passwordHash" column="password_hash" />
-            <result property="nickname" column="nickname" />
+            <result property="psaaword" column="password_hash" />
+            <result property="username" column="username" />
             <result property="avatarUrl" column="avatar_url" />
             <result property="gender" column="gender" />
             <result property="birthDate" column="birth_date" />
@@ -27,7 +27,7 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        user_id,email,phone,password_hash,nickname,avatar_url,
+        user_id,email,phone,password_hash,username,avatar_url,
         gender,birth_date,bio,steam_id,api_key,
         trade_link,is_verified,register_time,role,status,
         ban_end,balance,last_login

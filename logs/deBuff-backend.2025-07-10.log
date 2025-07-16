@@ -1,0 +1,194 @@
+2025-07-10 00:39:40.002 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-07-10 00:39:40.008 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-07-10 01:08:42.595 [main] INFO  com.debuff.debuffbackend.DeBuffBackendApplication - Starting DeBuffBackendApplication using Java 21.0.7 with PID 23432 (D:\Project\Java\DeBuff-Backend\deBuff-backend\target\classes started by m1822 in D:\Project\Java\DeBuff-Backend\deBuff-backend)
+2025-07-10 01:08:42.596 [main] DEBUG com.debuff.debuffbackend.DeBuffBackendApplication - Running with Spring Boot v3.5.3, Spring v6.2.8
+2025-07-10 01:08:42.597 [main] INFO  com.debuff.debuffbackend.DeBuffBackendApplication - No active profile set, falling back to 1 default profile: "default"
+2025-07-10 01:08:43.619 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-07-10 01:08:43.621 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2025-07-10 01:08:43.622 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-07-10 01:08:43.664 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-07-10 01:08:43.809 [main] INFO  org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-07-10 01:08:43.879 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.18.Final
+2025-07-10 01:08:43.919 [main] INFO  o.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-07-10 01:08:44.213 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-07-10 01:08:44.335 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@68d8ae27
+2025-07-10 01:08:44.337 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-07-10 01:08:44.376 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-07-10 01:08:44.377 [main] WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-07-10 01:08:44.391 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-07-10 01:08:44.681 [main] INFO  o.h.e.t.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-07-10 01:08:45.458 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-07-10 01:08:45.632 [main] WARN  o.s.b.a.t.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration - Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2025-07-10 01:08:45.793 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-07-10 01:08:45.814 [main] INFO  com.debuff.debuffbackend.DeBuffBackendApplication - Started DeBuffBackendApplication in 3.762 seconds (process running for 4.331)
+2025-07-10 01:08:52.347 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-07-10 01:08:52.353 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-07-10 01:16:45.291 [main] INFO  com.debuff.debuffbackend.DeBuffBackendApplication - Starting DeBuffBackendApplication using Java 21.0.7 with PID 23148 (D:\Project\Java\DeBuff-Backend\deBuff-backend\target\classes started by m1822 in D:\Project\Java\DeBuff-Backend\deBuff-backend)
+2025-07-10 01:16:45.292 [main] DEBUG com.debuff.debuffbackend.DeBuffBackendApplication - Running with Spring Boot v3.5.3, Spring v6.2.8
+2025-07-10 01:16:45.293 [main] INFO  com.debuff.debuffbackend.DeBuffBackendApplication - No active profile set, falling back to 1 default profile: "default"
+2025-07-10 01:16:46.319 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-07-10 01:16:46.321 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2025-07-10 01:16:46.321 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-07-10 01:16:46.367 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-07-10 01:16:46.497 [main] INFO  org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-07-10 01:16:46.542 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.18.Final
+2025-07-10 01:16:46.571 [main] INFO  o.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-07-10 01:16:46.853 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-07-10 01:16:46.976 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6fced25c
+2025-07-10 01:16:46.977 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-07-10 01:16:47.020 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-07-10 01:16:47.021 [main] WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-07-10 01:16:47.036 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-07-10 01:16:47.302 [main] INFO  o.h.e.t.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-07-10 01:16:48.065 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-07-10 01:16:48.239 [main] WARN  o.s.b.a.t.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration - Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2025-07-10 01:16:48.403 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-07-10 01:16:48.426 [main] INFO  com.debuff.debuffbackend.DeBuffBackendApplication - Started DeBuffBackendApplication in 3.63 seconds (process running for 4.15)
+2025-07-10 01:17:14.317 [http-nio-8080-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-07-10 01:17:14.407 [http-nio-8080-exec-1] INFO  c.debuff.debuffbackend.controller.SteamController - 前端请求获取Steam用户库存，steamId: 76561198978607732
+2025-07-10 01:17:14.407 [http-nio-8080-exec-1] INFO  c.d.debuffbackend.service.impl.SteamServiceImpl - 调用Steam库存API: https://steamcommunity.com/inventory/76561198978607732/730/2?l=schinese
+2025-07-10 01:17:15.596 [http-nio-8080-exec-1] INFO  c.d.debuffbackend.service.impl.SteamServiceImpl - Steam库存API调用成功，用户: 76561198978607732，库存总量: 58
+2025-07-10 01:20:34.251 [http-nio-8080-exec-3] INFO  c.debuff.debuffbackend.controller.SteamController - 前端请求获取Steam用户库存，steamId: 76561198978607732
+2025-07-10 01:20:34.251 [http-nio-8080-exec-3] INFO  c.d.debuffbackend.service.impl.SteamServiceImpl - 调用Steam库存API: https://steamcommunity.com/inventory/76561198978607732/730/2?l=schinese
+2025-07-10 01:20:34.987 [http-nio-8080-exec-3] INFO  c.d.debuffbackend.service.impl.SteamServiceImpl - Steam库存API调用成功，用户: 76561198978607732，库存总量: 58
+2025-07-10 01:24:37.673 [main] INFO  com.debuff.debuffbackend.SteamControllerTest - Starting SteamControllerTest using Java 21.0.7 with PID 2884 (started by m1822 in D:\Project\Java\DeBuff-Backend\deBuff-backend)
+2025-07-10 01:24:37.674 [main] DEBUG com.debuff.debuffbackend.SteamControllerTest - Running with Spring Boot v3.5.3, Spring v6.2.8
+2025-07-10 01:24:37.675 [main] INFO  com.debuff.debuffbackend.SteamControllerTest - No active profile set, falling back to 1 default profile: "default"
+2025-07-10 01:24:38.986 [main] WARN  o.s.b.a.t.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration - Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2025-07-10 01:24:39.063 [main] INFO  com.debuff.debuffbackend.SteamControllerTest - Started SteamControllerTest in 1.869 seconds (process running for 2.969)
+2025-07-10 01:24:39.164 [main] INFO  c.debuff.debuffbackend.controller.SteamController - 前端请求获取Steam用户库存，steamId: 76561198978607732
+2025-07-10 01:24:39.220 [main] INFO  c.debuff.debuffbackend.controller.SteamController - 前端请求获取Steam用户库存，steamId: 76561199643378611
+2025-07-10 01:24:39.222 [main] INFO  c.debuff.debuffbackend.controller.SteamController - 前端请求获取Steam用户库存，steamId: 76561199044940522
+2025-07-10 01:29:40.484 [http-nio-8080-exec-8] INFO  c.debuff.debuffbackend.controller.SteamController - 前端请求获取Steam用户库存，steamId: 76561198978607732
+2025-07-10 01:29:40.484 [http-nio-8080-exec-8] INFO  c.d.debuffbackend.service.impl.SteamServiceImpl - 调用Steam库存API: https://steamcommunity.com/inventory/76561198978607732/730/2?l=schinese
+2025-07-10 01:29:41.617 [http-nio-8080-exec-8] INFO  c.d.debuffbackend.service.impl.SteamServiceImpl - Steam库存API调用成功，用户: 76561198978607732，库存总量: 58
+2025-07-10 01:29:47.750 [http-nio-8080-exec-10] INFO  c.debuff.debuffbackend.controller.SteamController - 前端请求获取Steam用户库存，steamId: 76561198978607732
+2025-07-10 01:29:47.751 [http-nio-8080-exec-10] INFO  c.d.debuffbackend.service.impl.SteamServiceImpl - 调用Steam库存API: https://steamcommunity.com/inventory/76561198978607732/730/2?l=schinese
+2025-07-10 01:29:48.409 [http-nio-8080-exec-10] INFO  c.d.debuffbackend.service.impl.SteamServiceImpl - Steam库存API调用成功，用户: 76561198978607732，库存总量: 58
+2025-07-10 01:30:00.978 [http-nio-8080-exec-5] INFO  c.debuff.debuffbackend.controller.SteamController - 前端请求获取Steam用户库存，steamId: 76561198978607732
+2025-07-10 01:30:00.978 [http-nio-8080-exec-5] INFO  c.d.debuffbackend.service.impl.SteamServiceImpl - 调用Steam库存API: https://steamcommunity.com/inventory/76561198978607732/730/2?l=schinese
+2025-07-10 01:30:02.106 [http-nio-8080-exec-5] INFO  c.d.debuffbackend.service.impl.SteamServiceImpl - Steam库存API调用成功，用户: 76561198978607732，库存总量: 58
+2025-07-10 01:38:41.826 [http-nio-8080-exec-7] INFO  c.debuff.debuffbackend.controller.SteamController - 前端请求获取Steam用户库存，steamId: 76561198978607732
+2025-07-10 01:38:41.826 [http-nio-8080-exec-7] INFO  c.d.debuffbackend.service.impl.SteamServiceImpl - 调用Steam库存API: https://steamcommunity.com/inventory/76561198978607732/730/2?l=schinese
+2025-07-10 01:38:42.580 [http-nio-8080-exec-7] INFO  c.d.debuffbackend.service.impl.SteamServiceImpl - Steam库存API调用成功，用户: 76561198978607732，库存总量: 58
+2025-07-10 01:40:04.573 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-07-10 01:40:04.576 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-07-10 09:06:48.342 [main] INFO  com.debuff.debuffbackend.DeBuffBackendApplication - Starting DeBuffBackendApplication using Java 21.0.7 with PID 11416 (D:\Project\Java\DeBuff-Backend\deBuff-backend\target\classes started by m1822 in D:\Project\Java\DeBuff-Backend\deBuff-backend)
+2025-07-10 09:06:48.344 [main] DEBUG com.debuff.debuffbackend.DeBuffBackendApplication - Running with Spring Boot v3.5.3, Spring v6.2.8
+2025-07-10 09:06:48.344 [main] INFO  com.debuff.debuffbackend.DeBuffBackendApplication - No active profile set, falling back to 1 default profile: "default"
+2025-07-10 09:06:49.544 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-07-10 09:06:49.545 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2025-07-10 09:06:49.545 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-07-10 09:06:49.604 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-07-10 09:06:49.792 [main] INFO  org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-07-10 09:06:49.843 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.18.Final
+2025-07-10 09:06:49.879 [main] INFO  o.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-07-10 09:06:50.311 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-07-10 09:06:50.481 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3c4059a
+2025-07-10 09:06:50.484 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-07-10 09:06:50.523 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-07-10 09:06:50.524 [main] WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-07-10 09:06:50.542 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-07-10 09:06:50.867 [main] INFO  o.h.e.t.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-07-10 09:06:51.761 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-07-10 09:06:51.960 [main] WARN  o.s.b.a.t.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration - Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2025-07-10 09:06:52.137 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-07-10 09:06:52.158 [main] INFO  com.debuff.debuffbackend.DeBuffBackendApplication - Started DeBuffBackendApplication in 4.515 seconds (process running for 5.13)
+2025-07-10 09:08:59.595 [http-nio-8080-exec-5] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-07-10 09:09:46.083 [http-nio-8080-exec-2] INFO  c.debuff.debuffbackend.controller.SteamController - 前端请求获取Steam用户库存，steamId: 76561198978607732
+2025-07-10 09:09:46.083 [http-nio-8080-exec-2] INFO  c.d.debuffbackend.service.impl.SteamServiceImpl - 调用Steam库存API: https://steamcommunity.com/inventory/76561198978607732/730/2?l=schinese
+2025-07-10 09:09:47.256 [http-nio-8080-exec-2] INFO  c.d.debuffbackend.service.impl.SteamServiceImpl - Steam库存API调用成功，用户: 76561198978607732，库存总量: 58
+2025-07-10 09:11:49.520 [http-nio-8080-exec-5] INFO  c.debuff.debuffbackend.controller.SteamController - 前端请求获取Steam用户库存，steamId: 76561198978607732
+2025-07-10 09:11:49.520 [http-nio-8080-exec-5] INFO  c.d.debuffbackend.service.impl.SteamServiceImpl - 调用Steam库存API: https://steamcommunity.com/inventory/76561198978607732/730/2?l=schinese
+2025-07-10 09:11:50.298 [http-nio-8080-exec-5] INFO  c.d.debuffbackend.service.impl.SteamServiceImpl - Steam库存API调用成功，用户: 76561198978607732，库存总量: 58
+2025-07-10 09:18:44.912 [http-nio-8080-exec-3] INFO  c.debuff.debuffbackend.controller.SteamController - 前端请求获取Steam用户库存，steamId: 76561198978607732
+2025-07-10 09:18:44.914 [http-nio-8080-exec-3] INFO  c.d.debuffbackend.service.impl.SteamServiceImpl - 调用Steam库存API: https://steamcommunity.com/inventory/76561198978607732/730/2?l=schinese
+2025-07-10 09:18:45.680 [http-nio-8080-exec-3] INFO  c.d.debuffbackend.service.impl.SteamServiceImpl - Steam库存API调用成功，用户: 76561198978607732，库存总量: 58
+2025-07-10 09:20:44.895 [http-nio-8080-exec-10] INFO  c.debuff.debuffbackend.controller.SteamController - 前端请求获取Steam用户库存，steamId: 76561198978607732
+2025-07-10 09:20:44.895 [http-nio-8080-exec-10] INFO  c.d.debuffbackend.service.impl.SteamServiceImpl - 调用Steam库存API: https://steamcommunity.com/inventory/76561198978607732/730/2?l=schinese
+2025-07-10 09:20:45.620 [http-nio-8080-exec-10] INFO  c.d.debuffbackend.service.impl.SteamServiceImpl - Steam库存API调用成功，用户: 76561198978607732，库存总量: 58
+2025-07-10 09:21:16.083 [http-nio-8080-exec-6] INFO  c.debuff.debuffbackend.controller.SteamController - 前端请求获取Steam用户库存，steamId: 76561198978607732
+2025-07-10 09:21:16.083 [http-nio-8080-exec-6] INFO  c.d.debuffbackend.service.impl.SteamServiceImpl - 调用Steam库存API: https://steamcommunity.com/inventory/76561198978607732/730/2?l=schinese
+2025-07-10 09:21:16.564 [http-nio-8080-exec-6] INFO  c.d.debuffbackend.service.impl.SteamServiceImpl - Steam库存API调用成功，用户: 76561198978607732，库存总量: 58
+2025-07-10 09:23:12.927 [http-nio-8080-exec-9] INFO  c.debuff.debuffbackend.controller.SteamController - 前端请求获取Steam用户库存，steamId: 76561198978607732
+2025-07-10 09:23:12.928 [http-nio-8080-exec-9] INFO  c.d.debuffbackend.service.impl.SteamServiceImpl - 调用Steam库存API: https://steamcommunity.com/inventory/76561198978607732/730/2?l=schinese
+2025-07-10 09:23:14.590 [http-nio-8080-exec-9] INFO  c.d.debuffbackend.service.impl.SteamServiceImpl - Steam库存API调用成功，用户: 76561198978607732，库存总量: 58
+2025-07-10 09:25:18.373 [http-nio-8080-exec-5] INFO  c.debuff.debuffbackend.controller.SteamController - 前端请求获取Steam用户库存，steamId: 76561198978607732
+2025-07-10 09:25:18.373 [http-nio-8080-exec-5] INFO  c.d.debuffbackend.service.impl.SteamServiceImpl - 调用Steam库存API: https://steamcommunity.com/inventory/76561198978607732/730/2?l=schinese
+2025-07-10 09:25:19.005 [http-nio-8080-exec-5] INFO  c.d.debuffbackend.service.impl.SteamServiceImpl - Steam库存API调用成功，用户: 76561198978607732，库存总量: 58
+2025-07-10 09:25:58.854 [http-nio-8080-exec-3] INFO  c.debuff.debuffbackend.controller.SteamController - 前端请求获取Steam用户库存，steamId: 76561198978607732
+2025-07-10 09:25:58.854 [http-nio-8080-exec-3] INFO  c.d.debuffbackend.service.impl.SteamServiceImpl - 调用Steam库存API: https://steamcommunity.com/inventory/76561198978607732/730/2?l=schinese
+2025-07-10 09:25:59.602 [http-nio-8080-exec-3] INFO  c.d.debuffbackend.service.impl.SteamServiceImpl - Steam库存API调用成功，用户: 76561198978607732，库存总量: 58
+2025-07-10 09:33:26.243 [http-nio-8080-exec-4] INFO  c.debuff.debuffbackend.controller.SteamController - 前端请求获取Steam用户库存，steamId: 76561198978607732
+2025-07-10 09:33:26.243 [http-nio-8080-exec-4] INFO  c.d.debuffbackend.service.impl.SteamServiceImpl - 调用Steam库存API: https://steamcommunity.com/inventory/76561198978607732/730/2?l=schinese
+2025-07-10 09:33:26.983 [http-nio-8080-exec-4] INFO  c.d.debuffbackend.service.impl.SteamServiceImpl - Steam库存API调用成功，用户: 76561198978607732，库存总量: 58
+2025-07-10 09:33:28.474 [http-nio-8080-exec-10] INFO  c.debuff.debuffbackend.controller.SteamController - 前端请求获取Steam用户库存，steamId: 76561198978607732
+2025-07-10 09:33:28.474 [http-nio-8080-exec-10] INFO  c.d.debuffbackend.service.impl.SteamServiceImpl - 调用Steam库存API: https://steamcommunity.com/inventory/76561198978607732/730/2?l=schinese
+2025-07-10 09:33:28.950 [http-nio-8080-exec-10] INFO  c.d.debuffbackend.service.impl.SteamServiceImpl - Steam库存API调用成功，用户: 76561198978607732，库存总量: 58
+2025-07-10 09:34:18.389 [http-nio-8080-exec-2] INFO  c.debuff.debuffbackend.controller.SteamController - 前端请求获取Steam用户库存，steamId: 76561198978607732
+2025-07-10 09:34:18.389 [http-nio-8080-exec-2] INFO  c.d.debuffbackend.service.impl.SteamServiceImpl - 调用Steam库存API: https://steamcommunity.com/inventory/76561198978607732/730/2?l=schinese
+2025-07-10 09:34:18.957 [http-nio-8080-exec-2] INFO  c.d.debuffbackend.service.impl.SteamServiceImpl - Steam库存API调用成功，用户: 76561198978607732，库存总量: 58
+2025-07-10 09:37:08.726 [http-nio-8080-exec-1] INFO  c.debuff.debuffbackend.controller.SteamController - 前端请求获取Steam用户库存，steamId: 76561198978607732
+2025-07-10 09:37:08.726 [http-nio-8080-exec-1] INFO  c.d.debuffbackend.service.impl.SteamServiceImpl - 调用Steam库存API: https://steamcommunity.com/inventory/76561198978607732/730/2?l=schinese
+2025-07-10 09:37:09.456 [http-nio-8080-exec-1] INFO  c.d.debuffbackend.service.impl.SteamServiceImpl - Steam库存API调用成功，用户: 76561198978607732，库存总量: 58
+2025-07-10 09:40:28.788 [http-nio-8080-exec-9] INFO  c.debuff.debuffbackend.controller.SteamController - 前端请求获取Steam用户库存，steamId: 76561198978607732
+2025-07-10 09:40:28.788 [http-nio-8080-exec-9] INFO  c.d.debuffbackend.service.impl.SteamServiceImpl - 调用Steam库存API: https://steamcommunity.com/inventory/76561198978607732/730/2?l=schinese
+2025-07-10 09:40:29.730 [http-nio-8080-exec-9] INFO  c.d.debuffbackend.service.impl.SteamServiceImpl - Steam库存API调用成功，用户: 76561198978607732，库存总量: 58
+2025-07-10 09:41:35.416 [http-nio-8080-exec-1] INFO  c.debuff.debuffbackend.controller.SteamController - 前端请求获取Steam用户库存，steamId: 76561198978607732
+2025-07-10 09:41:35.416 [http-nio-8080-exec-1] INFO  c.d.debuffbackend.service.impl.SteamServiceImpl - 调用Steam库存API: https://steamcommunity.com/inventory/76561198978607732/730/2?l=schinese
+2025-07-10 09:41:36.152 [http-nio-8080-exec-1] INFO  c.d.debuffbackend.service.impl.SteamServiceImpl - Steam库存API调用成功，用户: 76561198978607732，库存总量: 58
+2025-07-10 12:53:00.527 [http-nio-8080-exec-1] INFO  c.debuff.debuffbackend.controller.SteamController - 前端请求获取Steam用户库存，steamId: 76561198978607732
+2025-07-10 12:53:00.527 [http-nio-8080-exec-1] INFO  c.d.debuffbackend.service.impl.SteamServiceImpl - 调用Steam库存API: https://steamcommunity.com/inventory/76561198978607732/730/2?l=schinese
+2025-07-10 12:53:01.359 [http-nio-8080-exec-1] INFO  c.d.debuffbackend.service.impl.SteamServiceImpl - Steam库存API调用成功，用户: 76561198978607732，库存总量: 58
+2025-07-10 16:52:06.583 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-07-10 16:52:06.646 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-07-10 16:52:10.351 [main] INFO  com.debuff.debuffbackend.DeBuffBackendApplication - Starting DeBuffBackendApplication using Java 21.0.7 with PID 13072 (D:\Project\Java\DeBuff-Backend\deBuff-backend\target\classes started by m1822 in D:\Project\Java\DeBuff-Backend\deBuff-backend)
+2025-07-10 16:52:10.353 [main] DEBUG com.debuff.debuffbackend.DeBuffBackendApplication - Running with Spring Boot v3.5.3, Spring v6.2.8
+2025-07-10 16:52:10.353 [main] INFO  com.debuff.debuffbackend.DeBuffBackendApplication - No active profile set, falling back to 1 default profile: "default"
+2025-07-10 16:52:11.485 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-07-10 16:52:11.487 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2025-07-10 16:52:11.487 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-07-10 16:52:11.532 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-07-10 16:52:11.685 [main] INFO  org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-07-10 16:52:11.779 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.18.Final
+2025-07-10 16:52:11.813 [main] INFO  o.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-07-10 16:52:12.126 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-07-10 16:52:12.258 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@246df37b
+2025-07-10 16:52:12.260 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-07-10 16:52:12.526 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-07-10 16:52:12.527 [main] WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-07-10 16:52:12.549 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-07-10 16:52:12.931 [main] INFO  o.h.e.t.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-07-10 16:52:13.735 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-07-10 16:52:13.925 [main] WARN  o.s.b.a.t.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration - Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2025-07-10 16:52:14.102 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-07-10 16:52:14.126 [main] INFO  com.debuff.debuffbackend.DeBuffBackendApplication - Started DeBuffBackendApplication in 4.402 seconds (process running for 5.152)
+2025-07-10 20:30:47.150 [HikariPool-1:housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2h1m33s226ms196µs100ns).
