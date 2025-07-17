@@ -2,6 +2,7 @@ package com.debuff.debuffbackend.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
@@ -23,5 +24,12 @@ public class CorsConfig implements WebMvcConfigurer {
                 .allowedHeaders("*") // 允许所有请求头
                 .allowCredentials(true) // 允许携带凭证（如Cookie）
                 .maxAge(3600); // 预检请求的有效期（秒）
+    }
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        // 配置静态资源访问路径
+        registry.addResourceHandler("/avatars/**")
+                .addResourceLocations("classpath:/static/avatars/");
     }
 }

@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -21,6 +23,7 @@ import java.util.Random;
 @RestController
 @RequestMapping("/")
 public class AuthController {
+    private static final Logger logger = LoggerFactory.getLogger(AuthController.class);
 
     @Autowired
     private VerificationCodeService verificationCodeService;
@@ -40,6 +43,8 @@ public class AuthController {
     @PostMapping("api/send-verification-code")
     public ResponseEntity<Map<String, Object>> sendRegisterCode(@RequestBody Map<String, String> request) {
         String email = request.get("email");
+        logger.info("发送注册验证码 - 邮箱: {}", email);
+        logger.info("检查邮箱是否注册 - 邮箱: {}", email);
         Map<String, Object> response = new HashMap<>();
 
         if (email == null || email.isEmpty()) {
@@ -65,6 +70,7 @@ public class AuthController {
      */
     @GetMapping("api/check-email")
     public ResponseEntity<Map<String, Object>> checkEmail(@RequestParam String email) {
+        logger.info("检查邮箱是否注册 - 邮箱: {}", email);
         Map<String, Object> response = new HashMap<>();
 
         if (email == null || email.isEmpty()) {
@@ -96,6 +102,7 @@ public class AuthController {
         String email = request.get("email");
         String password = request.get("password");
         String code = request.get("emailCode");
+        logger.info("用户注册 - 用户名: {}, 邮箱: {}", username, email);
         Map<String, Object> response = new HashMap<>();
 
         // 参数校验
@@ -135,7 +142,7 @@ public class AuthController {
         // 随机选择默认头像
         Random random = new Random();
         int avatarNumber = random.nextInt(5) + 1; // 生成1-5的随机数
-        String avatarUrl = "/assets/avatars/default-avatar-" + avatarNumber + ".svg";
+        String avatarUrl = "/avatars/default-avatar-" + avatarNumber + ".svg";
         user.setAvatarUrl(avatarUrl);
 
         boolean saved = usersService.save(user);
@@ -156,6 +163,7 @@ public class AuthController {
     @PostMapping("api/login/send-verification-code")
     public ResponseEntity<Map<String, Object>> sendLoginCode(@RequestBody Map<String, String> request) {
         String email = request.get("email");
+        logger.info("发送注册验证码 - 邮箱: {}", email);
         Map<String, Object> response = new HashMap<>();
 
         if (email == null || email.isEmpty()) {
@@ -185,37 +193,68 @@ public class AuthController {
     }
 
     /**
-     * 用户登录
+     * 用户登录 - 支持邮箱+密码或邮箱+验证码两种方式
      */
     @PostMapping("api/login")
     public ResponseEntity<Map<String, Object>> login(@RequestBody Map<String, String> request) {
         String email = request.get("email");
         String password = request.get("password");
         String code = request.get("code");
+        String loginType = request.get("loginType");
+        logger.info("用户登录 - 邮箱: {}, 登录类型: {}", email, loginType);
         Map<String, Object> response = new HashMap<>();
+        Users user = null;
 
         // 参数校验
-        if (email == null || email.isEmpty() || password == null || password.isEmpty() ||
-                code == null || code.isEmpty()) {
+        if (email == null || email.isEmpty() || loginType == null || loginType.isEmpty()) {
             response.put("success", false);
-            response.put("message", "所有字段均为必填项");
+            response.put("message", "邮箱和登录类型为必填项");
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
 
-        // 验证验证码
-        boolean codeValid = verificationCodeService.validateCode(email, code);
-        if (!codeValid) {
-            response.put("success", false);
-            response.put("message", "验证码无效或已过期");
-            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
-        }
+        // 根据登录类型验证不同参数
+        if ("password".equals(loginType)) {
+            // 密码登录：验证密码
+            if (password == null || password.isEmpty()) {
+                response.put("success", false);
+                response.put("message", "密码不能为空");
+                return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+            }
 
-        // 用户登录
-        Users user = usersService.login(email, password);
-        if (user == null) {
+            // 用户登录（密码验证）
+            user = usersService.login(email, password);
+            if (user == null) {
+                response.put("success", false);
+                response.put("message", "邮箱或密码错误");
+                return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
+            }
+        } else if ("code".equals(loginType)) {
+            // 验证码登录：验证验证码
+            if (code == null || code.isEmpty()) {
+                response.put("success", false);
+                response.put("message", "验证码不能为空");
+                return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+            }
+
+            // 验证验证码
+            boolean codeValid = verificationCodeService.validateCode(email, code);
+            if (!codeValid) {
+                response.put("success", false);
+                response.put("message", "验证码无效或已过期");
+                return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+            }
+
+            // 通过邮箱获取用户信息
+            user = usersService.findByEmail(email);
+            if (user == null) {
+                response.put("success", false);
+                response.put("message", "该邮箱未注册");
+                return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
+            }
+        } else {
             response.put("success", false);
-            response.put("message", "邮箱或密码错误");
-            return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
+            response.put("message", "无效的登录类型，支持：password/code");
+            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
 
         // 生成JWT令牌
