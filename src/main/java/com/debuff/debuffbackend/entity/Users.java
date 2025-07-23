@@ -66,6 +66,7 @@ public class Users {
     /**
      * Steam账户的唯一标识符
      */
+    @TableField("steam_id")
     private String steamId;
 
     /**

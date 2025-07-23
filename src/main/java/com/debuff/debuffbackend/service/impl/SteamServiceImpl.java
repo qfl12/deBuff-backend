@@ -25,11 +25,12 @@ public class SteamServiceImpl implements SteamService {
 
     /**
      * 获取Steam用户库存信息
+     *
      * @param steamId Steam用户ID
      * @return 封装后的库存信息响应结果
      */
     @Override
-    public Result<SteamInventoryResponse> getSteamInventory(String steamId) {
+    public Result<Object> getSteamInventory(String steamId) {
         try {
             // 构建完整的API请求URL
             String url = String.format(STEAM_INVENTORY_URL, steamId);

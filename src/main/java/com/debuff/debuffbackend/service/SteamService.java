@@ -1,6 +1,5 @@
 package com.debuff.debuffbackend.service;
 
-import com.debuff.debuffbackend.model.SteamInventoryResponse;
 import com.debuff.util.Result;
 
 /**
@@ -10,8 +9,9 @@ import com.debuff.util.Result;
 public interface SteamService {
     /**
      * 获取Steam用户库存信息
+     *
      * @param steamId Steam用户ID
      * @return 封装后的库存信息响应结果
      */
-    Result<SteamInventoryResponse> getSteamInventory(String steamId);
+    Result<Object> getSteamInventory(String steamId);
 }

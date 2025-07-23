@@ -29,7 +29,7 @@ public class CaptchaController {
      * 生成图片验证码
      */
     @GetMapping("/image")
-    public void generateCaptcha(HttpServletResponse response, HttpSession session) throws IOException {
+    public void generateCaptcha(HttpServletResponse response) throws IOException {
         // 设置响应头
         response.setContentType("image/png");
         response.setHeader("Pragma", "No-cache");

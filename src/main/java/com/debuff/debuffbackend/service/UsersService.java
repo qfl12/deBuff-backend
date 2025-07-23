@@ -5,9 +5,9 @@ import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
 * @author m1822
-* @description 针对表【users(用户信息表)】的数据库操作Service
-* @createDate 2025-07-09 14:55:57
-*/
+* {@code @description} 针对表【users(用户信息表)】的数据库操作Service
+* {@code @createDate} 2025-07-09 14:55:57
+ */
 public interface UsersService extends IService<Users> {
     /**
      * 根据邮箱查询用户
@@ -23,4 +23,11 @@ public interface UsersService extends IService<Users> {
      * @return 登录成功的用户信息
      */
     Users login(String email, String password_hash);
+
+    /**
+     * 根据SteamID查询用户
+     * @param steamId Steam用户ID
+     * @return 用户信息
+     */
+    Users findBySteamId(String steamId);
 }
