@@ -1,17 +1,21 @@
 package com.debuff.debuffbackend.mapper;
 
-import com.debuff.debuffbackend.entity.Items;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.debuff.debuffbackend.entity.Items;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 
-/**
-* @author m1822
-* @description 针对表【items(商品信息表)】的数据库操作Mapper
-* @createDate 2025-07-09 14:55:57
-* @Entity com.debuff.debuffbackend.entity.Items
-*/
+import java.util.List;
+
 @Mapper
 public interface ItemsMapper extends BaseMapper<Items> {
+    /**
+     * 根据用户ID查询库存物品
+     * @param userId 用户ID
+     * @return 物品列表
+     */
+    @Select("SELECT * FROM items WHERE user_id = #{userId}")
+    List<Items> selectByUserId(Integer userId);
 
 }
 

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.debuff.debuffbackend.mapper.ItemsMapper">
+    <resultMap id="BaseResultMap" type="com.debuff.debuffbackend.entity.Items">
+        <id column="id" property="id"/>
+        <result column="user_id" property="userId"/>
+        <result column="appid" property="appid"/>
+        <result column="classid" property="classid"/>
+        <result column="instanceid" property="instanceid"/>
+        <result column="icon_url" property="iconUrl"/>
+        <result column="name" property="name"/>
+        <result column="type" property="type"/>
+        <result column="market_name" property="marketName"/>
+        <result column="market_hash_name" property="marketHashName"/>
+        <result column="tradable" property="tradable"/>
+        <result column="commodity" property="commodity"/>
+        <result column="market_tradable_restriction" property="marketTradableRestriction"/>
+        <result column="market_marketable_restriction" property="marketMarketableRestriction"/>
+        <result column="quantity" property="quantity"/>
+        <result column="acquisition_time" property="acquisitionTime"/>
+        <result column="status" property="status"/>
+    </resultMap>
+
+    <select id="selectByUserId" resultMap="BaseResultMap">
+        SELECT * FROM items WHERE user_id = #{userId}
+    </select>
+</mapper>

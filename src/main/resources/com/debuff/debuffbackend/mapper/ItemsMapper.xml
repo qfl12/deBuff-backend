@@ -5,23 +5,26 @@
 <mapper namespace="com.debuff.debuffbackend.mapper.ItemsMapper">
 
     <resultMap id="BaseResultMap" type="com.debuff.debuffbackend.entity.Items">
-            <id property="itemId" column="item_id" />
-            <result property="sellerId" column="seller_id" />
-            <result property="title" column="title" />
+            <id property="id" column="id" />
+            <result property="userId" column="user_id" />
+            <result property="appid" column="appid" />
+            <result property="classid" column="classid" />
+            <result property="instanceid" column="instanceid" />
+            <result property="iconUrl" column="icon_url" />
+            <result property="name" column="name" />
+            <result property="type" column="type" />
+            <result property="marketName" column="market_name" />
+            <result property="marketHashName" column="market_hash_name" />
             <result property="description" column="description" />
-            <result property="categoryId" column="category_id" />
-            <result property="price" column="price" />
-            <result property="imageUrl" column="image_url" />
-            <result property="wearValue" column="wear_value" />
-            <result property="coolDown" column="cool_down" />
-            <result property="postTime" column="post_time" />
-            <result property="isSold" column="is_sold" />
-            <result property="status" column="status" />
+            <result property="tradable" column="tradable" />
+            <result property="commodity" column="commodity" />
+            <result property="marketTradableRestriction" column="market_tradable_restriction" />
+            <result property="marketMarketableRestriction" column="market_marketable_restriction" />
     </resultMap>
 
     <sql id="Base_Column_List">
-        item_id,seller_id,title,description,category_id,price,
-        image_url,wear_value,cool_down,post_time,is_sold,
-        status
+        id,user_id,appid,classid,instanceid,icon_url,
+        name,type,market_name,market_hash_name,description,tradable,
+        commodity,market_tradable_restriction,market_marketable_restriction
     </sql>
 </mapper>

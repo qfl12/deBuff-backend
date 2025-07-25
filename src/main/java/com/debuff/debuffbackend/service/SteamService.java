@@ -1,6 +1,9 @@
 package com.debuff.debuffbackend.service;
 
-import com.debuff.util.Result;
+import com.debuff.debuffbackend.common.Result;
+import com.debuff.debuffbackend.entity.Items;
+
+import java.util.List;
 
 /**
  * Steam服务接口
@@ -13,5 +16,5 @@ public interface SteamService {
      * @param steamId Steam用户ID
      * @return 封装后的库存信息响应结果
      */
-    Result<Object> getSteamInventory(String steamId);
+    Result<List<Items>> getSteamInventory(String steamId);
 }

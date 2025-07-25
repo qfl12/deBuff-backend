@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.debuff.debuffbackend.mapper.CsgoItemMapper">
+
+    <!-- 根据Steam物品ID查询物品 -->
+    <select id="selectBySteamItemId" resultType="com.debuff.debuffbackend.entity.CsgoItem">
+        SELECT * FROM csgo_items WHERE steam_item_id = #{steamItemId}
+    </select>
+
+    <!-- 根据物品类型查询 -->
+    <select id="selectByType" resultType="com.debuff.debuffbackend.entity.CsgoItem">
+        SELECT * FROM csgo_items WHERE type = #{type}
+    </select>
+
+    <!-- 根据稀有度查询 -->
+    <select id="selectByRarity" resultType="com.debuff.debuffbackend.entity.CsgoItem">
+        SELECT * FROM csgo_items WHERE rarity = #{rarity}
+    </select>
+
+    <!-- 批量插入或更新CSGO物品 -->
+    <insert id="batchInsertOrUpdate">
+        INSERT INTO csgo_items (
+            steam_item_id, name, type, sub_type, rarity, description, 
+            image_url, local_image_path, collection, stattrak, souvenir, 
+            created_at, updated_at
+        ) VALUES
+        <foreach collection="list" item="item" separator=",">
+            (
+                #{item.steamItemId}, #{item.name}, #{item.type}, #{item.subType}, #{item.rarity}, #{item.description}, 
+                #{item.imageUrl}, #{item.localImagePath}, #{item.collection}, #{item.stattrak}, #{item.souvenir}, 
+                NOW(), NOW()
+            )
+        </foreach>
+        ON DUPLICATE KEY UPDATE
+            name = VALUES(name),
+            sub_type = VALUES(sub_type),
+            rarity = VALUES(rarity),
+            description = VALUES(description),
+            image_url = VALUES(image_url),
+            local_image_path = VALUES(local_image_path),
+            collection = VALUES(collection),
+            stattrak = VALUES(stattrak),
+            souvenir = VALUES(souvenir),
+            updated_at = NOW()
+    </insert>
+
+</mapper>

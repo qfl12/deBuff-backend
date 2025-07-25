@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.debuff.debuffbackend.mapper.ItemTagsMapper">
+
+    <resultMap id="BaseResultMap" type="com.debuff.debuffbackend.entity.ItemTags">
+            <id property="id" column="id" />
+            <result property="itemId" column="item_id" />
+            <result property="category" column="category" />
+            <result property="internalName" column="internal_name" />
+            <result property="localizedCategoryName" column="localized_category_name" />
+            <result property="localizedTagName" column="localized_tag_name" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,item_id,category,internal_name,localized_category_name,localized_tag_name
+    </sql>
+</mapper>

@@ -1,80 +1,111 @@
 package com.debuff.debuffbackend.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.math.BigDecimal;
-import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
+import java.time.LocalDateTime;
+
 /**
- * 商品信息表
+ * 物品信息表
  * @TableName items
  */
 @TableName(value ="items")
 @Data
 public class Items {
     /**
-     * 商品ID，主键，自动递增
+     * 自增主键ID
      */
     @TableId(type = IdType.AUTO)
-    private Integer itemId;
+    private Long id;
 
     /**
-     * 卖家ID，外键关联Users表的user_id
+     * 用户ID（外键）
      */
-    private Integer sellerId;
+    private Integer userId;
 
     /**
-     * 商品标题
+     * 应用ID，用于区分不同游戏或应用
      */
-    private String title;
+    private Integer appid;
 
     /**
-     * 商品描述
+     * 类别ID，标识物品类别
+     */
+    private Long classid;
+
+    /**
+     * 实例ID，进一步细化物品标识
+     */
+    private Long instanceid;
+
+    /**
+     * 物品图标URL
+     */
+    @JsonProperty("imageUrl")
+    private String iconUrl;
+
+    /**
+     * 物品名称
+     */
+    private String name;
+
+    /**
+     * 物品类别
+     */
+    private String type;
+
+    /**
+     * 市场中显示的物品名称
+     */
+    private String marketName;
+
+    /**
+     * 用于市场查询的唯一标识符
+     */
+    private String marketHashName;
+
+    /**
+     * 物品描述信息
      */
     private String description;
 
     /**
-     * 商品分类ID，外键关联Categories表的category_id
+     * 是否可交易：1为是，0为否
      */
-    private Integer categoryId;
+    private Integer tradable;
 
     /**
-     * 价格
+     * 是否为商品：1为是，0为否
      */
-    private BigDecimal price;
+    private Integer commodity;
 
     /**
-     * 商品图片URL
+     * 市场交易限制
      */
-    private String imageUrl;
+    private Integer marketTradableRestriction;
 
     /**
-     * 磨损值（可为空）
+     * 市场销售限制
      */
-    private String wearValue;
+    private Integer marketMarketableRestriction;
 
     /**
-     * 冷却期结束时间
+     * 物品数量
      */
-    private Date coolDown;
+    private Integer quantity;
 
     /**
-     * 发布时间，默认为当前时间戳
+     * 获取时间
      */
-    private Date postTime;
+    private LocalDateTime acquisitionTime;
 
     /**
-     * 是否已售出，默认否
+     * 物品状态：AVAILABLE-可用, ON_SALE-在售, TRADING-交易中, DELETED-已删除
      */
-    private Integer isSold;
-
-    /**
-     * 商品状态：在售、已售完、已移除，默认在售
-     */
-    private Object status;
+    private String status;
 
     @Override
     public boolean equals(Object that) {
@@ -88,17 +119,23 @@ public class Items {
             return false;
         }
         Items other = (Items) that;
-        return (this.getItemId() == null ? other.getItemId() == null : this.getItemId().equals(other.getItemId()))
-            && (this.getSellerId() == null ? other.getSellerId() == null : this.getSellerId().equals(other.getSellerId()))
-            && (this.getTitle() == null ? other.getTitle() == null : this.getTitle().equals(other.getTitle()))
+        return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
+            && (this.getUserId() == null ? other.getUserId() == null : this.getUserId().equals(other.getUserId()))
+            && (this.getAppid() == null ? other.getAppid() == null : this.getAppid().equals(other.getAppid()))
+            && (this.getClassid() == null ? other.getClassid() == null : this.getClassid().equals(other.getClassid()))
+            && (this.getInstanceid() == null ? other.getInstanceid() == null : this.getInstanceid().equals(other.getInstanceid()))
+            && (this.getIconUrl() == null ? other.getIconUrl() == null : this.getIconUrl().equals(other.getIconUrl()))
+            && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()))
+            && (this.getType() == null ? other.getType() == null : this.getType().equals(other.getType()))
+            && (this.getMarketName() == null ? other.getMarketName() == null : this.getMarketName().equals(other.getMarketName()))
+            && (this.getMarketHashName() == null ? other.getMarketHashName() == null : this.getMarketHashName().equals(other.getMarketHashName()))
             && (this.getDescription() == null ? other.getDescription() == null : this.getDescription().equals(other.getDescription()))
-            && (this.getCategoryId() == null ? other.getCategoryId() == null : this.getCategoryId().equals(other.getCategoryId()))
-            && (this.getPrice() == null ? other.getPrice() == null : this.getPrice().equals(other.getPrice()))
-            && (this.getImageUrl() == null ? other.getImageUrl() == null : this.getImageUrl().equals(other.getImageUrl()))
-            && (this.getWearValue() == null ? other.getWearValue() == null : this.getWearValue().equals(other.getWearValue()))
-            && (this.getCoolDown() == null ? other.getCoolDown() == null : this.getCoolDown().equals(other.getCoolDown()))
-            && (this.getPostTime() == null ? other.getPostTime() == null : this.getPostTime().equals(other.getPostTime()))
-            && (this.getIsSold() == null ? other.getIsSold() == null : this.getIsSold().equals(other.getIsSold()))
+            && (this.getTradable() == null ? other.getTradable() == null : this.getTradable().equals(other.getTradable()))
+            && (this.getCommodity() == null ? other.getCommodity() == null : this.getCommodity().equals(other.getCommodity()))
+            && (this.getMarketTradableRestriction() == null ? other.getMarketTradableRestriction() == null : this.getMarketTradableRestriction().equals(other.getMarketTradableRestriction()))
+            && (this.getMarketMarketableRestriction() == null ? other.getMarketMarketableRestriction() == null : this.getMarketMarketableRestriction().equals(other.getMarketMarketableRestriction()))
+            && (this.getQuantity() == null ? other.getQuantity() == null : this.getQuantity().equals(other.getQuantity()))
+            && (this.getAcquisitionTime() == null ? other.getAcquisitionTime() == null : this.getAcquisitionTime().equals(other.getAcquisitionTime()))
             && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()));
     }
 
@@ -106,17 +143,23 @@ public class Items {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((getItemId() == null) ? 0 : getItemId().hashCode());
-        result = prime * result + ((getSellerId() == null) ? 0 : getSellerId().hashCode());
-        result = prime * result + ((getTitle() == null) ? 0 : getTitle().hashCode());
+        result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
+        result = prime * result + ((getUserId() == null) ? 0 : getUserId().hashCode());
+        result = prime * result + ((getAppid() == null) ? 0 : getAppid().hashCode());
+        result = prime * result + ((getClassid() == null) ? 0 : getClassid().hashCode());
+        result = prime * result + ((getInstanceid() == null) ? 0 : getInstanceid().hashCode());
+        result = prime * result + ((getIconUrl() == null) ? 0 : getIconUrl().hashCode());
+        result = prime * result + ((getName() == null) ? 0 : getName().hashCode());
+        result = prime * result + ((getType() == null) ? 0 : getType().hashCode());
+        result = prime * result + ((getMarketName() == null) ? 0 : getMarketName().hashCode());
+        result = prime * result + ((getMarketHashName() == null) ? 0 : getMarketHashName().hashCode());
         result = prime * result + ((getDescription() == null) ? 0 : getDescription().hashCode());
-        result = prime * result + ((getCategoryId() == null) ? 0 : getCategoryId().hashCode());
-        result = prime * result + ((getPrice() == null) ? 0 : getPrice().hashCode());
-        result = prime * result + ((getImageUrl() == null) ? 0 : getImageUrl().hashCode());
-        result = prime * result + ((getWearValue() == null) ? 0 : getWearValue().hashCode());
-        result = prime * result + ((getCoolDown() == null) ? 0 : getCoolDown().hashCode());
-        result = prime * result + ((getPostTime() == null) ? 0 : getPostTime().hashCode());
-        result = prime * result + ((getIsSold() == null) ? 0 : getIsSold().hashCode());
+        result = prime * result + ((getTradable() == null) ? 0 : getTradable().hashCode());
+        result = prime * result + ((getCommodity() == null) ? 0 : getCommodity().hashCode());
+        result = prime * result + ((getMarketTradableRestriction() == null) ? 0 : getMarketTradableRestriction().hashCode());
+        result = prime * result + ((getMarketMarketableRestriction() == null) ? 0 : getMarketMarketableRestriction().hashCode());
+        result = prime * result + ((getQuantity() == null) ? 0 : getQuantity().hashCode());
+        result = prime * result + ((getAcquisitionTime() == null) ? 0 : getAcquisitionTime().hashCode());
         result = prime * result + ((getStatus() == null) ? 0 : getStatus().hashCode());
         return result;
     }
@@ -127,17 +170,23 @@ public class Items {
         sb.append(getClass().getSimpleName());
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
-        sb.append(", itemId=").append(itemId);
-        sb.append(", sellerId=").append(sellerId);
-        sb.append(", title=").append(title);
+        sb.append(", id=").append(id);
+        sb.append(", userId=").append(userId);
+        sb.append(", appid=").append(appid);
+        sb.append(", classid=").append(classid);
+        sb.append(", instanceid=").append(instanceid);
+        sb.append(", iconUrl=").append(iconUrl);
+        sb.append(", name=").append(name);
+        sb.append(", type=").append(type);
+        sb.append(", marketName=").append(marketName);
+        sb.append(", marketHashName=").append(marketHashName);
         sb.append(", description=").append(description);
-        sb.append(", categoryId=").append(categoryId);
-        sb.append(", price=").append(price);
-        sb.append(", imageUrl=").append(imageUrl);
-        sb.append(", wearValue=").append(wearValue);
-        sb.append(", coolDown=").append(coolDown);
-        sb.append(", postTime=").append(postTime);
-        sb.append(", isSold=").append(isSold);
+        sb.append(", tradable=").append(tradable);
+        sb.append(", commodity=").append(commodity);
+        sb.append(", marketTradableRestriction=").append(marketTradableRestriction);
+        sb.append(", marketMarketableRestriction=").append(marketMarketableRestriction);
+        sb.append(", quantity=").append(quantity);
+        sb.append(", acquisitionTime=").append(acquisitionTime);
         sb.append(", status=").append(status);
         sb.append("]");
         return sb.toString();
