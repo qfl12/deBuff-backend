@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.debuff.debuffbackend.mapper.MarketListingMapper">
+
+    <resultMap id="BaseResultMap" type="com.debuff.debuffbackend.entity.MarketListing">
+            <id property="id" column="id" />
+            <result property="itemId" column="item_id" />
+            <result property="userId" column="user_id" />
+            <result property="price" column="price" />
+            <result property="sellerNote" column="seller_note" />
+            <result property="status" column="status" />
+            <result property="createdAt" column="created_at" />
+            <result property="updatedAt" column="updated_at" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,item_id,user_id,price,seller_note,status,
+        created_at,updated_at
+    </sql>
+
+    <!-- 分页搜索商品挂牌信息 -->
+    <select id="selectSearchListingsPage" resultType="java.util.Map">
+        SELECT
+        m.id as listing_id,
+        m.item_id,
+        i.user_id as seller_id,  <!-- 从items表获取user_id -->
+        m.price,
+        m.seller_note,
+        m.status,
+        m.created_at,
+        m.updated_at,
+        i.name as item_name,
+        i.icon_url as image_url,
+        i.description,
+        i.type,
+        i.market_name,
+        u.username as seller_username
+    FROM market_listing m
+    LEFT JOIN items i ON m.item_id = i.id
+    LEFT JOIN users u ON i.user_id = u.user_id
+        WHERE m.status = 'ON_SALE'
+
+        <!-- 关键词搜索条件 -->
+        <if test="params.keyword != null and params.keyword != ''">
+            AND (i.name LIKE CONCAT('%', #{params.keyword}, '%') 
+            OR i.description LIKE CONCAT('%', #{params.keyword}, '%') OR i.market_name LIKE CONCAT('%', #{params.keyword}, '%') 
+            OR m.seller_note LIKE CONCAT('%', #{params.keyword}, '%'))
+        </if>
+
+        <!-- 类型筛选 -->
+        <if test="params.type != null and params.type != ''">
+            AND i.type = #{params.type}
+        </if>
+
+        <!-- 品质筛选 -->
+        <if test="params.quality != null and params.quality != ''">
+            AND i.quality = #{params.quality}
+        </if>
+
+        <!-- 类别筛选 -->
+        <if test="params.category != null and params.category != ''">
+            AND i.category = #{params.category}
+        </if>
+
+        <!-- 外观筛选 -->
+        <if test="params.appearance != null and params.appearance != ''">
+            AND i.appearance = #{params.appearance}
+        </if>
+
+        <!-- 排序 -->
+        ORDER BY m.created_at DESC
+    </select>
+</mapper>

@@ -71,11 +71,11 @@ public class SteamController {
      */
     @GetMapping("/inventory")
     @ApiOperation("获取当前用户Steam库存")
-    public Result<List<Items>> getUserInventory() {
+    public Result<List<Items>> getUserInventory(@RequestParam(defaultValue = "false") boolean sync) {
         log.info("===== 开始执行getUserInventory方法 =====");
         UserDetails userDetails = null;
         try {
-            log.info("开始获取用户Steam库存");
+            log.info("开始获取用户Steam库存，sync={}", sync);
             log.debug("当前请求路径: /api/steam/inventory");
             // 获取当前用户信息
             Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -133,10 +133,17 @@ public class SteamController {
                 log.error("用户未绑定Steam账号，用户名: {}", userDetails.getUsername());
                 return Result.fail("请先绑定Steam账号");
             }
-            
-            Result<List<Items>> inventoryResult = steamService.getSteamInventory(currentUser.getSteamId());
-            log.info("获取用户Steam库存成功，物品数量: {}", inventoryResult.getData() != null ? inventoryResult.getData().size() : 0);
-            return inventoryResult;
+
+            // 根据sync参数决定是否同步库存
+            if (sync) {
+                log.info("执行Steam库存同步");
+                return steamService.getSteamInventory(currentUser.getSteamId());
+            } else {
+                log.info("仅返回本地库存数据");
+                List<Items> localItems = itemsService.list(lambdaQuery(Items.class)
+                    .eq(Items::getUserId, currentUser.getUserId()));
+                return Result.success(localItems);
+            }
         } catch (Exception e) {
             log.error("获取Steam库存失败，用户名: {}", (userDetails != null ? userDetails.getUsername() : "未知用户"), e);
             return Result.fail("获取Steam库存失败: " + e.getMessage());
