@@ -8,7 +8,7 @@
             <id property="userId" column="user_id" />
             <result property="email" column="email" />
             <result property="phone" column="phone" />
-            <result property="psaaword" column="password_hash" />
+            <result property="psaaword" column="password" />
             <result property="username" column="username" />
             <result property="avatarUrl" column="avatar_url" />
             <result property="gender" column="gender" />

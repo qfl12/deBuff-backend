@@ -72,4 +72,28 @@
         <!-- 排序 -->
         ORDER BY m.created_at DESC
     </select>
+    <!-- 查询用户挂牌商品及关联商品详情 -->
+    <select id="selectUserListingsWithItems" resultType="java.util.Map">
+        SELECT ml.*, i.name AS item_name, i.icon_url as image_url, i.type
+        FROM market_listing ml
+        LEFT JOIN items i ON ml.item_id = i.id
+        WHERE ml.user_id = #{userId}
+        ORDER BY ml.created_at DESC
+    </select>
+
+    <!-- 更新商品挂牌信息 -->
+    <update id="updateListing">
+        UPDATE market_listing
+        SET price = #{price},
+            seller_note = #{sellerNote},
+            updated_at = NOW()
+        WHERE id = #{listingId} AND user_id = #{userId}
+    </update>
+
+    <!-- 下架商品 -->
+    <delete id="deleteListing">
+        DELETE FROM market_listing
+        WHERE id = #{listingId} AND user_id = #{userId}
+    </delete>
+
 </mapper>

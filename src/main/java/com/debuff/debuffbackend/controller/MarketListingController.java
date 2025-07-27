@@ -3,7 +3,7 @@ package com.debuff.debuffbackend.controller;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.debuff.debuffbackend.common.Result;
 import com.debuff.debuffbackend.dto.MarketListingDTO;
-import com.debuff.debuffbackend.entity.MarketListing;
+import com.debuff.debuffbackend.exception.BusinessException;
 import com.debuff.debuffbackend.service.MarketListingService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -78,19 +78,32 @@ public class MarketListingController {
 
     /**
      * 获取用户商品挂牌列表
+     *
      * @param page 页码
      * @param size 每页大小
      * @return 分页的挂牌列表
      */
-    @GetMapping
-    @ApiOperation("获取用户商品挂牌列表")
-    public Result<IPage<MarketListing>> getUserListings(
+    @GetMapping("/user")
+    @ApiOperation("获取用户已上架商品列表")
+    public Result<IPage<Map<String, Object>>> getUserListings(
             @RequestParam(defaultValue = "1") int page,
-            @RequestParam(defaultValue = "10") int size,
-            @RequestAttribute("userId") Integer userId) {
+            @RequestParam(defaultValue = "10") int size) {
+        // Get user ID from Spring Security context
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null || authentication.getName() == null) {
+            log.error("No authentication information found");
+            return Result.fail("User not authenticated");
+        }
+        Integer userId;
+        try {
+            userId = Integer.valueOf(authentication.getName());
+        } catch (NumberFormatException e) {
+            log.error("Invalid user ID format: {}", authentication.getName(), e);
+            return Result.fail("Invalid user ID");
+        }
 
         log.info("用户{}请求获取商品挂牌列表，页码: {}, 每页大小: {}", userId, page, size);
-        IPage<MarketListing> listings = marketListingService.getUserListings(userId, page, size);
+        IPage<Map<String, Object>> listings = marketListingService.getUserListings(userId, page, size);
         return Result.success(listings);
     }
 
@@ -161,6 +174,63 @@ public class MarketListingController {
         } catch (Exception e) {
             log.error("获取商品挂牌详情失败", e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
+
+    /**
+     * 更新商品挂牌信息
+     * @param id 挂牌ID
+     * @param listingDTO 包含价格和备注的请求体
+     * @return 操作结果
+     */
+    @PutMapping("/{id}")
+    public ResponseEntity<Result> updateListing(
+            @PathVariable Long id,
+            @Valid @RequestBody MarketListingDTO listingDTO) {
+        log.info("更新商品挂牌请求，ID: {}", id);
+        try {
+            // 获取当前登录用户ID
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            Integer userId = Integer.valueOf(authentication.getName());
+            
+            boolean success = marketListingService.updateMarketListing(id, userId, listingDTO.getPrice(), listingDTO.getSellerNote());
+            if (success) {
+                return ResponseEntity.ok(Result.success("商品挂牌更新成功"));
+            } else {
+                return ResponseEntity.ok(Result.fail("商品挂牌更新失败"));
+            }
+        } catch (BusinessException e) {
+            return ResponseEntity.ok(Result.fail(e.getMessage()));
+        } catch (Exception e) {
+            log.error("更新商品挂牌失败", e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Result.fail("服务器内部错误"));
+        }
+    }
+
+    /**
+     * 删除商品挂牌
+     * @param id 挂牌ID
+     * @return 操作结果
+     */
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Result> deleteListing(@PathVariable Long id) {
+        log.info("删除商品挂牌请求，ID: {}", id);
+        try {
+            // 获取当前登录用户ID
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            Integer userId = Integer.valueOf(authentication.getName());
+            
+            boolean success = marketListingService.deleteMarketListing(id, userId);
+            if (success) {
+                return ResponseEntity.ok(Result.success("商品挂牌删除成功"));
+            } else {
+                return ResponseEntity.ok(Result.fail("商品挂牌删除失败"));
+            }
+        } catch (BusinessException e) {
+            return ResponseEntity.ok(Result.fail(e.getMessage()));
+        } catch (Exception e) {
+            log.error("删除商品挂牌失败", e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Result.fail("服务器内部错误"));
         }
     }
 }

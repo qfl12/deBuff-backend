@@ -22,12 +22,17 @@ public class Tradeconfirmations {
     /**
      * 订单ID，外键关联Orders表的order_id
      */
-    private String orderId;
+    private Long orderId;
 
     /**
      * 买家ID，外键关联Users表的user_id
      */
     private Integer buyerId;
+
+    /**
+     * 库存名称
+     */
+    private String name;
 
     /**
      * 卖家ID，外键关联Users表的user_id
@@ -64,6 +69,7 @@ public class Tradeconfirmations {
         return (this.getConfirmationId() == null ? other.getConfirmationId() == null : this.getConfirmationId().equals(other.getConfirmationId()))
             && (this.getOrderId() == null ? other.getOrderId() == null : this.getOrderId().equals(other.getOrderId()))
             && (this.getBuyerId() == null ? other.getBuyerId() == null : this.getBuyerId().equals(other.getBuyerId()))
+            && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()))
             && (this.getSellerId() == null ? other.getSellerId() == null : this.getSellerId().equals(other.getSellerId()))
             && (this.getPaymentConfirmed() == null ? other.getPaymentConfirmed() == null : this.getPaymentConfirmed().equals(other.getPaymentConfirmed()))
             && (this.getShippingConfirmed() == null ? other.getShippingConfirmed() == null : this.getShippingConfirmed().equals(other.getShippingConfirmed()))
@@ -77,6 +83,7 @@ public class Tradeconfirmations {
         result = prime * result + ((getConfirmationId() == null) ? 0 : getConfirmationId().hashCode());
         result = prime * result + ((getOrderId() == null) ? 0 : getOrderId().hashCode());
         result = prime * result + ((getBuyerId() == null) ? 0 : getBuyerId().hashCode());
+        result = prime * result + ((getName() == null) ? 0 : getName().hashCode());
         result = prime * result + ((getSellerId() == null) ? 0 : getSellerId().hashCode());
         result = prime * result + ((getPaymentConfirmed() == null) ? 0 : getPaymentConfirmed().hashCode());
         result = prime * result + ((getShippingConfirmed() == null) ? 0 : getShippingConfirmed().hashCode());
@@ -93,6 +100,7 @@ public class Tradeconfirmations {
         sb.append(", confirmationId=").append(confirmationId);
         sb.append(", orderId=").append(orderId);
         sb.append(", buyerId=").append(buyerId);
+        sb.append(", name=").append(name);
         sb.append(", sellerId=").append(sellerId);
         sb.append(", paymentConfirmed=").append(paymentConfirmed);
         sb.append(", shippingConfirmed=").append(shippingConfirmed);

@@ -31,7 +31,15 @@ public interface MarketListingService extends IService<MarketListing> {
      * @param size 每页大小
      * @return 分页的挂牌列表
      */
-    IPage<MarketListing> getUserListings(Integer userId, int page, int size);
+    /**
+     * 获取用户挂牌列表（包含商品详情）
+     *
+     * @param userId 用户ID
+     * @param page   页码
+     * @param size   每页大小
+     * @return 分页的商品挂牌列表，包含商品详情信息
+     */
+    IPage<Map<String, Object>> getUserListings(Integer userId, int page, int size);
 
     /**
      * 批量检查商品是否存在ON_SALE状态的挂牌记录
@@ -67,5 +75,23 @@ public interface MarketListingService extends IService<MarketListing> {
      * @return 包含商品详情、价格和卖家信息的Map
      */
     Map<String, Object> getListingById(Long id);
+
+    /**
+     * 更新商品挂牌信息
+     * @param listingId 挂牌ID
+     * @param userId 用户ID
+     * @param price 新价格
+     * @param sellerNote 新备注
+     * @return 是否更新成功
+     */
+    boolean updateMarketListing(Long listingId, Integer userId, BigDecimal price, String sellerNote);
+
+    /**
+     * 下架商品
+     * @param listingId 挂牌ID
+     * @param userId 用户ID
+     * @return 是否下架成功
+     */
+    boolean deleteMarketListing(Long listingId, Integer userId);
 
 }

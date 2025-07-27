@@ -3,6 +3,8 @@ package com.debuff.debuffbackend.service;
 import com.debuff.debuffbackend.entity.Users;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.math.BigDecimal;
+
 /**
 * @author m1822
 * {@code @description} 针对表【users(用户信息表)】的数据库操作Service
@@ -30,4 +32,6 @@ public interface UsersService extends IService<Users> {
      * @return 用户信息
      */
     Users findBySteamId(String steamId);
+
+    void addBalance(Integer buyerId, BigDecimal price);
 }

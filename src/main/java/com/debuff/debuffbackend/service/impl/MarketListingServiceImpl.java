@@ -121,13 +121,21 @@ public class MarketListingServiceImpl extends ServiceImpl<MarketListingMapper, M
         }
     }
 
+    /**
+     * 查询用户商品挂牌列表，同时关联查询商品详情
+     *
+     * @param userId 用户ID
+     * @param page   页码
+     * @param size   每页大小
+     * @return 包含商品详情的分页列表
+     */
     @Override
-    public IPage<MarketListing> getUserListings(Integer userId, int page, int size) {
-        log.info("用户{}查询商品挂牌列表，页码: {}, 每页大小: {}", userId, page, size);
+    public IPage<Map<String, Object>> getUserListings(Integer userId, int page, int size) {
+        log.info("用户{}查询商品挂牌列表（含商品信息），页码: {}, 每页大小: {}", userId, page, size);
         try {
-            Page<MarketListing> pagination = new Page<>(page, size);
-            IPage<MarketListing> result = baseMapper.selectPage(pagination,
-                    new QueryWrapper<MarketListing>().eq("user_id", userId).orderByDesc("created_at"));
+            Page<Map<String, Object>> pagination = new Page<>(page, size);
+            // 关联查询market_listing和item表，获取商品详情
+            IPage<Map<String, Object>> result = baseMapper.selectUserListingsWithItems(pagination, userId);
             log.info("用户{}查询商品挂牌列表成功，共{}条记录", userId, result.getTotal());
             return result;
         } catch (Exception e) {
@@ -168,10 +176,13 @@ public class MarketListingServiceImpl extends ServiceImpl<MarketListingMapper, M
             result.put("name", item.getName());
             result.put("price", listing.getPrice());
             result.put("imageUrl", item.getIconUrl());
+            result.put("type", item.getType());
+            result.put("marketName", item.getMarketName());
             result.put("listingId", listing.getId());
             result.put("description", item.getDescription());
             result.put("sellerNote", listing.getSellerNote());
             result.put("sellerUsername", seller != null ? seller.getUsername() : "未知卖家");
+            result.put("sellerUserId", seller != null ? seller.getUserId() : 1 );
             result.put("sellerAvatarUrl", seller!= null? seller.getAvatarUrl() : "/avatars/default_avatar.jpg");
             result.put("status", listing.getStatus());
             result.put("createdAt", listing.getCreatedAt());
@@ -180,6 +191,96 @@ public class MarketListingServiceImpl extends ServiceImpl<MarketListingMapper, M
         } catch (Exception e) {
             log.error("获取商品挂牌详情异常", e);
             return null;
+        }
+    }
+
+    @Override
+    public boolean updateMarketListing(Long listingId, Integer userId, BigDecimal price, String sellerNote) {
+        log.info("用户{}更新商品挂牌，挂牌ID: {}, 新价格: {}", userId, listingId, price);
+        try {
+            // 验证参数
+            if (listingId == null || userId == null || price == null) {
+                String errorMsg = "参数错误，挂牌ID、用户ID和价格不能为空";
+                log.warn(errorMsg);
+                throw new BusinessException(errorMsg);
+            }
+
+            // 检查挂牌是否存在且属于当前用户
+            MarketListing listing = baseMapper.selectById(listingId);
+            if (listing == null) {
+                String errorMsg = "商品挂牌不存在，ID: " + listingId;
+                log.warn("用户{}更新商品挂牌失败，{}", userId, errorMsg);
+                throw new BusinessException(errorMsg);
+            }
+            if (!listing.getUserId().equals(userId)) {
+                String errorMsg = "没有权限操作此商品挂牌";
+                log.warn("用户{}更新商品挂牌失败，{}", userId, errorMsg);
+                throw new BusinessException(errorMsg);
+            }
+            if (!"ON_SALE".equals(listing.getStatus())) {
+                String errorMsg = "只有状态为'ON_SALE'的商品可以编辑";
+                log.warn("用户{}更新商品挂牌失败，{}", userId, errorMsg);
+                throw new BusinessException(errorMsg);
+            }
+
+            // 更新商品信息
+            listing.setPrice(price);
+            listing.setSellerNote(sellerNote);
+            listing.setUpdatedAt(new Date());
+            boolean result = updateById(listing);
+            if (result) {
+                log.info("用户{}更新商品挂牌成功，挂牌ID: {}", userId, listingId);
+            } else {
+                log.error("用户{}更新商品挂牌失败，挂牌ID: {}", userId, listingId);
+            }
+            return result;
+        } catch (BusinessException e) {
+            throw e;
+        } catch (Exception e) {
+            log.error("用户{}更新商品挂牌系统异常: {}", userId, e.getMessage(), e);
+            return false;
+        }
+    }
+
+    @Override
+    public boolean deleteMarketListing(Long listingId, Integer userId) {
+        log.info("用户{}删除商品挂牌，挂牌ID: {}", userId, listingId);
+        try {
+            // 验证参数
+            if (listingId == null || userId == null) {
+                String errorMsg = "参数错误，挂牌ID和用户ID不能为空";
+                log.warn(errorMsg);
+                throw new BusinessException(errorMsg);
+            }
+
+            // 检查挂牌是否存在且属于当前用户
+            MarketListing listing = baseMapper.selectById(listingId);
+            if (listing == null) {
+                String errorMsg = "商品挂牌不存在，ID: " + listingId;
+                log.warn("用户{}删除商品挂牌失败，{}", userId, errorMsg);
+                throw new BusinessException(errorMsg);
+            }
+            if (!listing.getUserId().equals(userId)) {
+                String errorMsg = "没有权限操作此商品挂牌";
+                log.warn("用户{}删除商品挂牌失败，{}", userId, errorMsg);
+                throw new BusinessException(errorMsg);
+            }
+
+            // 执行删除操作
+            int affectedRows = marketListingMapper.deleteListing(listingId, userId);
+            boolean result = affectedRows > 0;
+            
+            if (result) {
+                log.info("用户{}删除商品挂牌成功，挂牌ID: {}", userId, listingId);
+            } else {
+                log.error("用户{}删除商品挂牌失败，挂牌ID: {}", userId, listingId);
+            }
+            return result;
+        } catch (BusinessException e) {
+            throw e;
+        } catch (Exception e) {
+            log.error("用户{}删除商品挂牌系统异常: {}", userId, e.getMessage(), e);
+            return false;
         }
     }
 

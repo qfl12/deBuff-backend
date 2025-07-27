@@ -31,6 +31,8 @@ public class Items {
      */
     private Integer appid;
 
+    private Long assetid;
+
     /**
      * 类别ID，标识物品类别
      */
@@ -123,6 +125,7 @@ public class Items {
             && (this.getUserId() == null ? other.getUserId() == null : this.getUserId().equals(other.getUserId()))
             && (this.getAppid() == null ? other.getAppid() == null : this.getAppid().equals(other.getAppid()))
             && (this.getClassid() == null ? other.getClassid() == null : this.getClassid().equals(other.getClassid()))
+            && (this.getClassid() == null ? other.getClassid() == null : this.getClassid().equals(other.getClassid()))
             && (this.getInstanceid() == null ? other.getInstanceid() == null : this.getInstanceid().equals(other.getInstanceid()))
             && (this.getIconUrl() == null ? other.getIconUrl() == null : this.getIconUrl().equals(other.getIconUrl()))
             && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()))
@@ -146,6 +149,7 @@ public class Items {
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
         result = prime * result + ((getUserId() == null) ? 0 : getUserId().hashCode());
         result = prime * result + ((getAppid() == null) ? 0 : getAppid().hashCode());
+        result = prime * result + ((getClassid() == null) ? 0 : getClassid().hashCode());
         result = prime * result + ((getClassid() == null) ? 0 : getClassid().hashCode());
         result = prime * result + ((getInstanceid() == null) ? 0 : getInstanceid().hashCode());
         result = prime * result + ((getIconUrl() == null) ? 0 : getIconUrl().hashCode());
@@ -173,6 +177,7 @@ public class Items {
         sb.append(", id=").append(id);
         sb.append(", userId=").append(userId);
         sb.append(", appid=").append(appid);
+        sb.append(", assetid=").append(assetid);
         sb.append(", classid=").append(classid);
         sb.append(", instanceid=").append(instanceid);
         sb.append(", iconUrl=").append(iconUrl);

@@ -8,6 +8,7 @@
             <id property="id" column="id" />
             <result property="userId" column="user_id" />
             <result property="appid" column="appid" />
+            <result property="assetid" column="assetid" />
             <result property="classid" column="classid" />
             <result property="instanceid" column="instanceid" />
             <result property="iconUrl" column="icon_url" />
@@ -23,7 +24,7 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,user_id,appid,classid,instanceid,icon_url,
+        id,user_id,appid,assetid,classid,instanceid,icon_url,
         name,type,market_name,market_hash_name,description,tradable,
         commodity,market_tradable_restriction,market_marketable_restriction
     </sql>

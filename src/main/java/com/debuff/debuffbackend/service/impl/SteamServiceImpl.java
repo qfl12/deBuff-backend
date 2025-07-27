@@ -79,6 +79,19 @@ public class SteamServiceImpl implements SteamService {
 
             List<Items> savedItems = null;
             Integer userId = null;
+            // 处理资产信息并建立映射关系
+            Map<String, String> assetMap = new HashMap<>();
+            if (response.getAssets() != null) {
+                for (SteamInventoryResponse.Asset asset : response.getAssets()) {
+                    String key = asset.getAppid() + "_" + asset.getClassid() + "_" + asset.getInstanceid();
+                    assetMap.put(key, asset.getAssetid());
+                    log.debug("Added asset to map: {} -> {}", key, asset.getAssetid());
+                }
+                log.info("处理资产信息完成，共 {} 条资产记录", response.getAssets().size());
+            } else {
+                log.warn("Steam API响应中未包含资产信息");
+            }
+
             if (response.getDescriptions() != null) {
                 // 获取当前用户ID
                 Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -208,6 +221,23 @@ public class SteamServiceImpl implements SteamService {
                                     }
                                 }
                             }
+
+                            // 同步更新assetid
+                            String assetKey = existingItem.getAppid() + "_" + existingItem.getClassid() + "_" + existingItem.getInstanceid();
+                            String assetidStr = assetMap.get(assetKey);
+                            if (assetidStr != null) {
+                                try {
+                                    long assetid = Long.parseLong(assetidStr);
+                                    if (!Objects.equals(existingItem.getAssetid(), assetid)) {
+                                        existingItem.setAssetid(assetid);
+                                        needUpdate = true;
+                                    }
+                                } catch (NumberFormatException e) {
+                                    log.error("资产ID转换失败: {}", assetidStr, e);
+                                }
+                            } else {
+                                log.warn("未找到物品对应的资产信息: {}", assetKey);
+                            }
                         } catch (NumberFormatException e) {
                             log.error("解析物品ID失败: appid={}, classid={}, instanceid={}", desc.getAppid(), desc.getClassid(), desc.getInstanceid(), e);
                             localItemMap.remove(key);
@@ -266,6 +296,24 @@ public class SteamServiceImpl implements SteamService {
                         item.setAppid(Integer.parseInt(desc.getAppid()));
                         item.setClassid(Long.parseLong(desc.getClassid()));
                         item.setInstanceid(Long.parseLong(desc.getInstanceid()));
+                        
+                        // 从资产映射中获取并设置assetid
+                        String assetKey = desc.getAppid() + "_" + desc.getClassid() + "_" + desc.getInstanceid();
+                        String assetidStr = assetMap.get(assetKey);
+                        if (assetidStr != null) {
+                            try {
+                                // 转换assetid为Long类型
+                                Long assetid = (Long) Long.parseLong(assetidStr);
+                                item.setAssetid((long) Math.toIntExact(assetid));
+                            } catch (NumberFormatException e) {
+                                log.error("资产ID转换失败: {}", assetidStr, e);
+                            }
+                        } else {
+                            log.warn("未找到物品对应的资产信息: {}", assetKey);
+                        }
+                        if (assetidStr == null) {
+                            log.warn("未找到物品对应的资产信息: {}", assetKey);
+                        }
                     } catch (NumberFormatException e) {
                         log.error("解析物品ID失败: appid={}, classid={}, instanceid={}", desc.getAppid(), desc.getClassid(), desc.getInstanceid(), e);
                         continue;
