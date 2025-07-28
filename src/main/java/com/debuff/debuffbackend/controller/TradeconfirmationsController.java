@@ -1,15 +1,14 @@
 package com.debuff.debuffbackend.controller;
 
+import com.debuff.debuffbackend.entity.Tradeconfirmations;
 import com.debuff.debuffbackend.service.TradeconfirmationsService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -29,6 +28,23 @@ public class TradeconfirmationsController {
      */
     @Autowired
     private TradeconfirmationsService tradeconfirmationsService;
+
+    /**
+     * 获取用户交易记录
+     */
+    @GetMapping("/user-trades")
+    public ResponseEntity<List<Tradeconfirmations>> getUserTradeRecords(
+            @RequestParam Integer userId,
+            @RequestParam(defaultValue = "ALL") String status) {
+        try {
+            log.info("获取用户交易记录 - userId: {}, status: {}", userId, status);
+            List<Tradeconfirmations> trades = tradeconfirmationsService.getUserTradeRecords(userId, status);
+            return ResponseEntity.ok(trades);
+        } catch (Exception e) {
+            log.error("获取用户交易记录失败", e);
+            return ResponseEntity.internalServerError().body(null);
+        }
+    }
 
     /**
      * 处理商品购买请求

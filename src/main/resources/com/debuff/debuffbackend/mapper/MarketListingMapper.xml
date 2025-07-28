@@ -74,11 +74,43 @@
     </select>
     <!-- 查询用户挂牌商品及关联商品详情 -->
     <select id="selectUserListingsWithItems" resultType="java.util.Map">
-        SELECT ml.*, i.name AS item_name, i.icon_url as image_url, i.type
+        SELECT ml.*, i.name AS item_name, i.icon_url as image_url, i.type, i.market_name
         FROM market_listing ml
         LEFT JOIN items i ON ml.item_id = i.id
         WHERE ml.user_id = #{userId}
         ORDER BY ml.created_at DESC
+    </select>
+    <select id="selectItemById" resultType="java.util.Map">
+           SELECT
+    ml.*,
+    i.name AS item_name,
+    i.icon_url AS image_url,
+    i.type,
+    i.market_name,
+    i.assetid,
+    i.user_id,
+    u.steam_id
+FROM market_listing ml
+LEFT JOIN items i ON ml.item_id = i.id
+LEFT JOIN users u ON i.user_id = u.user_id  -- 新增：关联users表
+WHERE ml.item_id = #{itemId}
+ORDER BY ml.created_at DESC
+    </select>
+    <select id="selectByItemId" resultType="com.debuff.debuffbackend.entity.MarketListing">
+        SELECT
+    ml.*,
+    i.name AS item_name,
+    i.icon_url AS image_url,
+    i.type,
+    i.market_name,
+    i.assetid,
+    i.user_id,
+    u.steam_id
+FROM market_listing ml
+LEFT JOIN items i ON ml.item_id = i.id
+LEFT JOIN users u ON i.user_id = u.user_id  -- 新增：关联users表
+WHERE ml.item_id = #{itemId}
+ORDER BY ml.created_at DESC
     </select>
 
     <!-- 更新商品挂牌信息 -->

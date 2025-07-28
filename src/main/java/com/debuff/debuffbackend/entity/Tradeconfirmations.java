@@ -29,6 +29,8 @@ public class Tradeconfirmations {
      */
     private Integer buyerId;
 
+    private Long tradeofferid;
+
     /**
      * 库存名称
      */
@@ -70,6 +72,7 @@ public class Tradeconfirmations {
             && (this.getOrderId() == null ? other.getOrderId() == null : this.getOrderId().equals(other.getOrderId()))
             && (this.getBuyerId() == null ? other.getBuyerId() == null : this.getBuyerId().equals(other.getBuyerId()))
             && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()))
+            && (this.getTradeofferid() == null ? other.getTradeofferid() == null : this.getTradeofferid().equals(other.getTradeofferid()))
             && (this.getSellerId() == null ? other.getSellerId() == null : this.getSellerId().equals(other.getSellerId()))
             && (this.getPaymentConfirmed() == null ? other.getPaymentConfirmed() == null : this.getPaymentConfirmed().equals(other.getPaymentConfirmed()))
             && (this.getShippingConfirmed() == null ? other.getShippingConfirmed() == null : this.getShippingConfirmed().equals(other.getShippingConfirmed()))
@@ -84,6 +87,7 @@ public class Tradeconfirmations {
         result = prime * result + ((getOrderId() == null) ? 0 : getOrderId().hashCode());
         result = prime * result + ((getBuyerId() == null) ? 0 : getBuyerId().hashCode());
         result = prime * result + ((getName() == null) ? 0 : getName().hashCode());
+        result = prime * result + ((getTradeofferid() == null) ? 0 : getTradeofferid().hashCode());
         result = prime * result + ((getSellerId() == null) ? 0 : getSellerId().hashCode());
         result = prime * result + ((getPaymentConfirmed() == null) ? 0 : getPaymentConfirmed().hashCode());
         result = prime * result + ((getShippingConfirmed() == null) ? 0 : getShippingConfirmed().hashCode());
@@ -101,6 +105,7 @@ public class Tradeconfirmations {
         sb.append(", orderId=").append(orderId);
         sb.append(", buyerId=").append(buyerId);
         sb.append(", name=").append(name);
+        sb.append(", tradeofferid=").append(tradeofferid);
         sb.append(", sellerId=").append(sellerId);
         sb.append(", paymentConfirmed=").append(paymentConfirmed);
         sb.append(", shippingConfirmed=").append(shippingConfirmed);
@@ -108,4 +113,12 @@ public class Tradeconfirmations {
         sb.append("]");
         return sb.toString();
     }
+
+    // 关联字段
+    @TableField(exist = false) // 非数据库字段
+    private MarketListing marketListing;
+
+    @TableField(exist = false) // 非数据库字段
+    private Items item;
+
 }

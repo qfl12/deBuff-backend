@@ -335,6 +335,7 @@ public class MarketListingServiceImpl extends ServiceImpl<MarketListingMapper, M
                     Map<String, Object> itemInfo = new HashMap<>();
                     itemInfo.put("id", item.getId());
                     itemInfo.put("name", item.getName());
+                    itemInfo.put("marketName", item.getMarketName());
                     itemInfo.put("price", listing.getPrice());
                     itemInfo.put("imageUrl", item.getIconUrl());
                     itemInfo.put("listingId", listing.getId());

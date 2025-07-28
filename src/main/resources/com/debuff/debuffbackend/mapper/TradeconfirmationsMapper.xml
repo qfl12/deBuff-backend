@@ -9,14 +9,40 @@
             <result property="orderId" column="order_id" />
             <result property="buyerId" column="buyer_id" />
             <result property="name" column="name" />
+            <result property="tradeofferid" column="tradeofferid" />
             <result property="sellerId" column="seller_id" />
             <result property="paymentConfirmed" column="payment_confirmed" />
             <result property="shippingConfirmed" column="shipping_confirmed" />
             <result property="tradeCompleted" column="trade_completed" />
+        <!-- 关联 market_listing 表 -->
+        <association property="marketListing" javaType="com.debuff.debuffbackend.entity.MarketListing">
+            <id property="id" column="ml_id" /> <!-- 对应 market_listing 的 id -->
+            <result property="price" column="ml_price" /> <!-- 关键：映射商品价格字段 -->
+            <result property="itemId" column="ml_item_id" /> <!-- 对应 market_listing 的 item_id -->
+        </association>
+
+        <!-- 关联 items 表 -->
+        <association property="item" javaType="com.debuff.debuffbackend.entity.Items">
+            <id property="id" column="i_id" /> <!-- 对应 items 的 id -->
+            <result property="iconUrl" column="i_icon_url" /> <!-- 对应 items 的 icon_url -->
+        </association>
     </resultMap>
 
     <sql id="Base_Column_List">
-        confirmation_id,order_id,buyer_id,name,seller_id,payment_confirmed,
+        confirmation_id,order_id,buyer_id,name,seller_id,payment_confirmed,tradeofferid
         shipping_confirmed,trade_completed
     </sql>
+    <select id="selectUserTradeRecordsWithItems" resultMap="BaseResultMap">
+        SELECT tc.*,
+        ml.id AS ml_id,
+        ml.item_id AS ml_item_id,
+        ml.price AS ml_price,
+        i.id AS i_id,
+        i.icon_url AS i_icon_url
+        FROM tradeconfirmations tc
+        LEFT JOIN market_listing ml ON tc.order_id = ml.id
+        LEFT JOIN items i ON ml.item_id = i.id
+        ${ew.customSqlSegment}
+    </select>
+
 </mapper>

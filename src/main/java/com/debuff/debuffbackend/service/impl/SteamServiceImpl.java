@@ -304,7 +304,7 @@ public class SteamServiceImpl implements SteamService {
                             try {
                                 // 转换assetid为Long类型
                                 Long assetid = (Long) Long.parseLong(assetidStr);
-                                item.setAssetid((long) Math.toIntExact(assetid));
+                                item.setAssetid(assetid);
                             } catch (NumberFormatException e) {
                                 log.error("资产ID转换失败: {}", assetidStr, e);
                             }
